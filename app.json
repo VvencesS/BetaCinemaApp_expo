@@ -1,0 +1,12 @@
+{
+  "name": "BetaCinemaApp_expo",
+  "displayName": "BetaCinemaApp_expo",
+  "expo": {
+    "name": "BetaCinemaApp_expo",
+    "slug": "BetaCinemaApp_expo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
