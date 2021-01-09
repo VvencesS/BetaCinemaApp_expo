@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import {
-    Text, View
+    Text, View, Button,
 } from 'react-native';
 
 export default class DangKyComponent extends Component {
-    static navigationOptions = {
-        title: 'Đăng ký',
-    };
     render() {
         return (
             <View style={{
@@ -18,6 +15,7 @@ export default class DangKyComponent extends Component {
                 <Text style={{ fontWeight: 'bold', fontSize: 22, color: 'white' }}>
                     Đăng ký
                 </Text>
+                <Button title="Đăng nhập" onPress={()=>this.props.navigation.navigate('DangNhap')} />
             </View>
         );
     }

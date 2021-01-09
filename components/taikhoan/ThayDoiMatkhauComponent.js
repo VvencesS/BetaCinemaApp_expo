@@ -3,7 +3,7 @@ import {
     Text, View, Button,
 } from 'react-native';
 
-export default class DangNhapComponent extends Component {
+export default class ThayDoiMatKhauComponent extends Component {
     render() {
         return (
             <View style={{
@@ -13,10 +13,9 @@ export default class DangNhapComponent extends Component {
                 justifyContent: 'center'
             }}>
                 <Text style={{ fontWeight: 'bold', fontSize: 22, color: 'white' }}>
-                    Đăng nhập
+                    Thay đổi mật khẩu
                 </Text>
                 <Button title="Home" onPress={()=>this.props.navigation.navigate('Home')} />
-                <Button title="Đăng ký" onPress={()=>this.props.navigation.navigate('DangKy')} />
             </View>
         );
     }
