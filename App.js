@@ -30,7 +30,6 @@ export default function App() {
         <Stack.Screen name="DangNhap" component={DangNhapComponent} options={{ title: 'Đăng nhập' }} />
         <Stack.Screen name="DangKy" component={DangKyComponent} options={{ title: 'Đăng ký' }} />
         <Stack.Screen name="Home" component={HomeComponent} options={{ headerShown: false }} />
-        <Stack.Screen name="HeaderBarLichChieu" component={HeaderBarLichChieu} options={{ headerShown: false }} />
         <Stack.Screen name="ThongTinTaiKhoan" component={ThongTinTaiKhoanComponent} options={{ title: 'Thông tin tài khoản' }} />
         <Stack.Screen name="ThayDoiMatKhau" component={ThayDoiMatKhauComponent} options={{ title: 'Thay đổi mật khẩu' }} />
         <Stack.Screen name="DatVeTheoPhim" component={DatVeTheoPhimComponent} options={{ title: 'Đặt vé theo phim' }} />

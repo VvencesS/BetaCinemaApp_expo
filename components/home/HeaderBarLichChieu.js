@@ -5,8 +5,6 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import logo from '../../images/logo.png';
 import avatar from '../../images/avatar.png';
 
-import DangNhapComponent from '../DangNhapComponent';
-
 const styles = StyleSheet.create({
     tinyLogo: {
         width: 90,
@@ -25,16 +23,12 @@ const styles = StyleSheet.create({
 });
 
 export default class HeaderBarLichChieu extends Component{
-    constructor(props) {
-        super(props);
-    }
     render() {
-        // const { navigate } = this.state;
         return (
             <View style={{ flex: 1, flexDirection: 'row', }}>
                 <View style={{ flex: 1, }} >
                     <Pressable
-                        onPress={() => this.props.navigation.navigate(DangNhap)}
+                        // onPress={() => this.props.navigation.navigate(DangNhap)}
                         style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}
                     >
                         {/* Khi đã đăng nhập */}
