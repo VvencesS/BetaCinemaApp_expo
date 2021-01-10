@@ -34,7 +34,7 @@ export default class HeaderBarLichChieu extends Component{
             <View style={{ flex: 1, flexDirection: 'row', }}>
                 <View style={{ flex: 1, }} >
                     <Pressable
-                        onPress={() => this.props.navigation.navigate(DangNhap)}
+                        //onPress={() => this.props.navigation.navigate(DangNhap)}
                         style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}
                     >
                         {/* Khi đã đăng nhập */}
