@@ -1,21 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import TinBenLeComponent from './components/tintuc/TinBenLeComponent';
+import ChiTietPhimComponent from './components/phim/ChiTietPhimComponent';
+import RapChieuComponent from './components/RapChieuComponent';
+import DoiMatKhauComponent from './components/taikhoan/DoiMatKhauComponent';
+import ThongTinTaiKhoanComponent from './components/taikhoan/ThongTinTaiKhoanComponent';
+import ThanhVienComponent from './components/taikhoan/ThanhVienComponent';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <ThanhVienComponent />
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
