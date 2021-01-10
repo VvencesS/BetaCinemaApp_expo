@@ -7,7 +7,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
-import DateModalComponent from './modal/DateModalComponent';
+// import DateModalComponent from './modal/DateModalComponent';
 
 
 
@@ -18,9 +18,9 @@ const { width: WIDTH } = Dimensions.get('window')
 export default class DangKyComponent extends Component {
     constructor(props){
       super(props);
-      this._onPressDateModal=this._onPressDateModal.bind(this);
+      // this._onPressDateModal=this._onPressDateModal.bind(this);
     }
-    _onPressDateModal= () => {this.refs.dateModal.showDateModal()}
+    // _onPressDateModal= () => {this.refs.dateModal.showDateModal()}
   render() {
     
     return (
@@ -79,12 +79,12 @@ export default class DangKyComponent extends Component {
         <View style={styles.view2}>
           <View style={styles.imputContainer1}>
             <View style={styles.imputContainer}>
-              <TouchableHighlight
-              onPress={this.onPressDateModal}
+              {/* <TouchableHighlight
+              // onPress={this.onPressDateModal}
               >
                 alo
-              </TouchableHighlight>
-              <DateModalComponent ref={"dateModal"}/>
+              </TouchableHighlight> */}
+              {/* <DateModalComponent ref={"dateModal"}/> */}
             </View>
           </View>
         </View>
