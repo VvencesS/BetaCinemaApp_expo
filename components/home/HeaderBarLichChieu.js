@@ -23,6 +23,10 @@ const styles = StyleSheet.create({
 });
 
 export default class HeaderBarLichChieu extends Component{
+    constructor(props) {
+        super(props);
+        // console.log(props);
+    }
     render() {
         return (
             <View style={{ flex: 1, flexDirection: 'row', }}>

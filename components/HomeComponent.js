@@ -25,13 +25,16 @@ const KhuyenMaiStack = createStackNavigator();
 const TaiKhoanStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function LichChieuTheoPhimStackScreen() {
+function LichChieuTheoPhimStackScreen({navigation, route}) {
     return (
         <LichChieuTheoPhimStack.Navigator>
             <LichChieuTheoPhimStack.Screen
                 name="Phim chiếu"
                 component={LichChieuTheoPhimComponent}
-                options={{ headerTitle: props => <HeaderBarLichChieu {...props} /> }}
+                options={{ 
+                    headerTitle: props => <HeaderBarLichChieu {...props} navigation={navigation} />,
+                    headerLeft: null
+                }}
             />
         </LichChieuTheoPhimStack.Navigator>
     );
