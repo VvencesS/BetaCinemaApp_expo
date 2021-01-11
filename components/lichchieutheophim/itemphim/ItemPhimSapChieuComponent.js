@@ -8,7 +8,7 @@ var screen = Dimensions.get('window');
 export default class ItemPhimDangChieuComponent extends Component {
     constructor(props) {
         super(props);
-        // console.log('ItemPhimSapChieuComponent', props);
+        console.log('ItemPhimDangChieuComponent', props);
     }
     render() {
         return (

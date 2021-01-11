@@ -5,11 +5,6 @@ import {
 import SlideImageComponent from '../slideimage/SlideImageComponent';
 import ItemPhimDangChieuComponent from './itemphim/ItemPhimDangChieuComponent';
 
-// import phim1 from '../../../images/phim1.jpg';
-// import phim2 from '../../../images/phim2.jpg';
-// import phim3 from '../../../images/phim3.jpg';
-// import phim4 from '../../../images/phim4.jpg';
-
 var screen = Dimensions.get('window');
 const listPhim = [
     {
@@ -33,6 +28,7 @@ const listPhim = [
         thoiLuong: '108 phút',
     },
 ]
+
 export default class DangChieuComponent extends Component {
     render() {
         return (
@@ -53,18 +49,6 @@ export default class DangChieuComponent extends Component {
                             );
                         }}
                     />
-                    {/* <View style={{ flexDirection: 'row' }}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('DatVeTheoPhim')}>
-                            <ItemPhimDangChieuComponent />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('DatVeTheoPhim')}>
-                            <ItemPhimDangChieuComponent />
-                        </TouchableOpacity>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('DatVeTheoPhim')}>
-                            <ItemPhimDangChieuComponent />
-                        </TouchableOpacity>
-
-                    </View> */}
                 </View>
             </ScrollView>
         );
