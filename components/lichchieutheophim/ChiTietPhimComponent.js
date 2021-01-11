@@ -20,11 +20,17 @@ export default class TinBenLeComponent extends Component {
               style={styles.background}
               source={require("../../images/image.jpg")}
             >
-                <TouchableHighlight onPress={() => this.props.navigation.navigate('Trailer')}>
-                    <Image source={require('../../images/play.png')}
+              <TouchableHighlight
+                onPress={() => this.props.navigation.navigate("Trailer")}
+              >
+                <View style={styles.button}>
+                  <Image
+                    source={require("../../images/play.png")}
                     style={styles.button_play}
-                    ></Image>
-                </TouchableHighlight>
+                    source={require("../../images/play.png")}
+                  ></Image>
+                </View>
+              </TouchableHighlight>
             </ImageBackground>
             <View style={styles.poster}>
               <Image
@@ -149,10 +155,11 @@ const styles = StyleSheet.create({
   summary_text: {
     fontSize: 16,
   },
-  button_play:{
-      width:100,
-      height:100,
-  }
+  button: {
+    alignItems: "center",
+  },
+  button_play: {
+    width: 100,
+    height: 100,
+  },
 });
-
- 

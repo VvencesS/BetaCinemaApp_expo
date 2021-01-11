@@ -58,7 +58,7 @@ export default class ThanhVienBetaComponent extends Component {
             </View>
           </View>
           <View style={styles.button}>
-            <TouchableHighlight onPress={this.onPress}>
+            <TouchableHighlight onPress={()=>this.props.navigation.navigate('DangNhap')}>
               <View>
                 <Text style={styles.button_text}>Đăng Xuất</Text>
               </View>

@@ -10,8 +10,7 @@ import {
   TouchableHighlight,
 } from "react-native";
 
-
-export default class DoiMatKhauComponent extends Component {
+export default class ThayDoiMatKhauComponent extends Component {
   _onPress = () => {
     Alert.alert("success");
   };
@@ -28,9 +27,6 @@ export default class DoiMatKhauComponent extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.title}>
-          <Text style={styles.title_text}>Thay đổi mật khẩu</Text>
-        </View>
         <ScrollView style={styles.content}>
           <Text style={styles.content_one}>Nhập mật khẩu hiện tại</Text>
           <TextInput
@@ -73,12 +69,11 @@ export default class DoiMatKhauComponent extends Component {
               });
             }}
           ></TextInput>
-          <View style={styles.list_tin}>
-              <TouchableHighlight ></TouchableHighlight>
-            <Text style={styles.button}>
-              xác nhận
-            </Text>
-          </View>
+          <TouchableHighlight>
+            <View style={styles.list_tin}> 
+              <Text style={styles.button}>xác nhận</Text>
+            </View>
+          </TouchableHighlight>
         </ScrollView>
       </View>
     );
@@ -93,16 +88,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     backgroundColor: "#e6eef2",
-  },
-  title: {
-    backgroundColor: "#357cd4",
-  },
-  title_text: {
-    color: "white",
-    fontSize: 24,
-    fontWeight: "bold",
-    padding: 15,
-    paddingStart: 20,
   },
   content: {
     flexDirection: "column",
