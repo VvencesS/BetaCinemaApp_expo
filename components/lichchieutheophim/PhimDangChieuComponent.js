@@ -43,7 +43,7 @@ export default class DangChieuComponent extends Component {
                         horizontal={false}
                         renderItem={({ item, index }) => {
                             return (
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('DatVeTheoPhim')}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ChiTietPhim', listPhim)}>
                                     <ItemPhimDangChieuComponent item={item} index={index} parentFlatList={this} />
                                 </TouchableOpacity>
                             );
