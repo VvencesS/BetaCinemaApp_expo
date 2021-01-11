@@ -133,7 +133,7 @@ export default class DangKyComponent extends Component {
               location={[0.5, 0.15, 1]}
               style={styles.buttonDN}
             >
-              <Text style={styles.text}>ĐĂNG Ký</Text>
+              <Text style={styles.text}>ĐĂNG KÝ</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>
