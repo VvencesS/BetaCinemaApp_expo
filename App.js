@@ -18,6 +18,7 @@ import TrailerComponent from './components/lichchieutheophim/TrailerComponent';
 import DatVeTheoRapComponent from './components/lichchieutheorap/DatVeTheoRapComponent';
 import ChiTietKhuyenMaiComponent from './components/khuyenmai/ChiTietKhuyenMaiComponent';
 import ChiTietTinBenLeComponent from './components/khuyenmai/ChiTietTinBenLeComponent';
+import ThanhVienBetaComponent from './components/taikhoan/ThanhVienBetaComponent';
 
 const Stack = createStackNavigator();
 
@@ -39,6 +40,7 @@ export default function App() {
         <Stack.Screen name="DatVeTheoRap" component={DatVeTheoRapComponent} options={{ title: 'Đặt vé theo rạp' }} />
         <Stack.Screen name="ChiTietKhuyenMai" component={ChiTietKhuyenMaiComponent} options={{ title: 'Tin mới và ưu đãi' }} />
         <Stack.Screen name="ChiTietTinBenLe" component={ChiTietTinBenLeComponent} options={{ title: 'Tin mới và ưu đãi' }} />
+        <Stack.Screen name="ThanhVienBeta" component={ThanhVienBetaComponent} options={{ title: 'Thành viên Beta' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
