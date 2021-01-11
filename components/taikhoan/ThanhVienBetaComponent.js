@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
     Text,
     View,
@@ -10,9 +10,9 @@ import {
     TouchableHighlight,
 } from "react-native";
 
-const image = { uri: "https://reactjs.org/logo-og.png" };
+const image = { uri: "https://reactjs.org/logo-og.png"};
 
-export default class TaiKhoanComponent extends Component {
+export default class ThanhVienBetaComponent extends Component {
     render() {
         return (
             <ScrollView>
@@ -41,12 +41,12 @@ export default class TaiKhoanComponent extends Component {
                             <View>
                                 <Image
                                     style={styles.code}
-                                    source={{ uri: 'https://raw.githubusercontent.com/VvencesS/BetaCinemaApp_expo/anhs/images/code.jpg' }}
+                                    source={{ uri: 'https://raw.githubusercontent.com/VvencesS/BetaCinemaApp_expo/anhs/images/code.jpg'}}
                                 ></Image>
                             </View>
                         </View>
                         <View style={styles.touch}>
-                            <TouchableHighlight onPress={() => this.props.navigation.navigate('ThongTinTaiKhoan')}>
+                            <TouchableHighlight onPress={() => this.props.navigation.navigate('Home')}>
                                 <View>
                                     <Text style={styles.touch_text} >Thông tin tài khoản</Text>
                                 </View>
