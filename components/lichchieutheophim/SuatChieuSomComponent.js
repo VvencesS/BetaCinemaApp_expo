@@ -34,6 +34,7 @@ export default class SuatChieuSomComponent extends Component {
                                 </TouchableOpacity>
                             );
                         }}
+                        keyExtractor={(item, index) => item.tenPhim}
                     />
                 </View>
             </ScrollView>

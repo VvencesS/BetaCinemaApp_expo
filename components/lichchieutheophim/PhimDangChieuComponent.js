@@ -48,6 +48,7 @@ export default class DangChieuComponent extends Component {
                                 </TouchableOpacity>
                             );
                         }}
+                        keyExtractor={(item, index) => item.tenPhim}
                     />
                 </View>
             </ScrollView>

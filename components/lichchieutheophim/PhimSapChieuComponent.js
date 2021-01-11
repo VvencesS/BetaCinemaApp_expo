@@ -69,6 +69,7 @@ export default class SapChieuComponent extends Component {
                                 </TouchableOpacity>
                             );
                         }}
+                        keyExtractor={(item, index) => item.tenPhim}
                     />
                 </View>
             </ScrollView>
