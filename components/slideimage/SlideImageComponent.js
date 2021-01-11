@@ -9,10 +9,10 @@ export default class SlideImageComponent extends Component {
         super(props);
         this.state = {
             images: [
-                "https://source.unsplash.com/1024x768/?nature",
-                "https://source.unsplash.com/1024x768/?water",
-                "https://source.unsplash.com/1024x768/?girl",
-                "https://source.unsplash.com/1024x768/?tree",
+                "https://files.betacorp.vn/files/ecm/2021/01/08/1702x621-lua-dao-102511-080121-29.jpg",
+                "https://files.betacorp.vn/files/ecm/2020/12/31/1702x621-45k-ncqpn-180707-311220-97.jpg",
+                "https://files.betacorp.vn/files/ecm/2020/12/31/1702x621-airpay-180813-311220-34.jpg",
+                "https://files.betacorp.vn/files/ecm/2021/01/06/1702x621-nhuong-quyen-182208-060121-79.jpg",
             ]
         };
     }
@@ -20,7 +20,7 @@ export default class SlideImageComponent extends Component {
         return (
             <SliderBox
                 images={this.state.images}
-                sliderBoxHeight={200}
+                sliderBoxHeight={150}
                 dotColor="#258dcf"
                 dotStyle={{
                     width: 10,
@@ -31,7 +31,8 @@ export default class SlideImageComponent extends Component {
                     margin: 0,
                     backgroundColor: "rgba(128, 128, 128, 0.92)"
                 }}
-                ImageComponentStyle={{ borderRadius: 7, width: screen.width - 10, marginTop: 10 }}
+                autoplay={true}
+                ImageComponentStyle={{ borderRadius: 7,  height: 150, width: screen.width - 10 ,}}
             />
         );
     }

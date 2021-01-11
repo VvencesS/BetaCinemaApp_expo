@@ -8,16 +8,20 @@ import anhPhim from '../../../images/phim1.jpg';
 var screen = Dimensions.get('window');
 
 export default class ItemPhimDangChieuComponent extends Component {
+    constructor(props) {
+        super(props);
+        console.log('ItemPhimDangChieuComponent', props);
+    }
     render() {
         return (
             <View style={{ flex: 1, flexDirection: 'column' }} style={styles.itemPhim}>
 
                 <View style={{ flex: 8, }}>
-                    <Image source={anhPhim} style={styles.filmImg} />
+                    <Image source={{uri: this.props.item.anhPhim}} style={styles.filmImg} />
                 </View>
                 <View style={{ flex: 2, alignItems: 'center' }}>
-                    <Text style={styles.filmName}>"Em" là của em</Text>
-                    <Text style={styles.filmTime}>98 phút</Text>
+                    <Text style={styles.filmName}>{this.props.item.tenPhim}</Text>
+                    <Text style={styles.filmTime}>{this.props.item.thoiLuong}</Text>
                 </View >
 
             </View>
@@ -30,7 +34,7 @@ export default class ItemPhimDangChieuComponent extends Component {
 const styles = StyleSheet.create({
     itemPhim: {
         width: (screen.width - 30) / 3,
-        height: ((screen.width - 30) / 3) * 1.75,
+        height: ((screen.width - 30) / 3) * 1.9,
         marginTop: 5,
         marginLeft: 5,
         marginRight: 5,
@@ -45,6 +49,7 @@ const styles = StyleSheet.create({
         flex: 1,
         fontWeight: 'bold',
         fontSize: 14,
+        paddingTop: 10,
     },
     filmTime: {
         flex: 1,
