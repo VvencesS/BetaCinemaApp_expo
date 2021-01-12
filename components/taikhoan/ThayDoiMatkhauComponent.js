@@ -13,7 +13,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 
-export default class DoiMatKhauComponent extends Component {
+export default class ThayDoiMatKhauComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +32,7 @@ export default class DoiMatKhauComponent extends Component {
             <View style={styles.list_item}>
               <MaterialIcons
                 name="lock-outline"
-                size={40}
+                size={30}
                 style={styles.input_icon}
               />
               <TextInput
@@ -56,7 +56,7 @@ export default class DoiMatKhauComponent extends Component {
             <View style={styles.list_item}>
               <MaterialCommunityIcons
                 name="lock-open-check"
-                size={40}
+                size={30}
                 style={styles.input_icon}
               />
               <TextInput
@@ -78,7 +78,7 @@ export default class DoiMatKhauComponent extends Component {
             <View style={styles.list_item}>
               <MaterialCommunityIcons
                 name="lock-check"
-                size={40}
+                size={30}
                 style={styles.input_icon}
               />
               <TextInput
@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
     color: "gray",
     alignSelf: "center",
     borderRightWidth: 4,
+    opacity:0.5,
   },
   button: {
     textAlign: "center",
