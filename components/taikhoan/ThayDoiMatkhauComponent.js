@@ -1,20 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
-    Text,
-    View,
-    StyleSheet,
-    TextInput,
-    Dimensions,
-    Alert,
-    ScrollView,
-    TouchableHighlight,
-} from 'react-native';
+    Text, View, Image, TextInput, StyleSheet, Button, Dimensions, TouchableOpacity, Alert, ScrollView
+} from "react-native";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { LinearGradient } from "expo-linear-gradient";
+
+const { width: WIDTH } = Dimensions.get('window')
 
 export default class ThayDoiMatKhauComponent extends Component {
-    _onPress = () => {
-        Alert.alert("success");
-    };
-
     constructor(props) {
         super(props);
         this.state = {
@@ -23,58 +18,58 @@ export default class ThayDoiMatKhauComponent extends Component {
             typeNewPassWordAgain: "",
         };
     }
+
     render() {
         return (
             <View style={styles.container}>
-                <ScrollView style={styles.content}>
-                    <Text style={styles.content_one}>Nhập mật khẩu hiện tại</Text>
-                    <TextInput
-                        style={styles.input}
-                        keyboardType="default"
-                        placeholder="Mật khẩu hiện tại"
-                        secureTextEntry={true}
-                        onChangeText={(text) => {
-                            this.setState((previousState) => {
-                                return {
-                                    typePassWord: text,
-                                };
-                            });
-                        }}
-                    ></TextInput>
-                    <Text style={styles.content_one}>Nhập mật khẩu mới</Text>
-                    <TextInput
-                        style={styles.input}
-                        secureTextEntry={true}
-                        placeholder="Mật khẩu mới"
-                        keyboardType="default"
-                        onChangeText={(text) => {
-                            this.setState((previousState) => {
-                                return {
-                                    typeNewPassWord: text,
-                                };
-                            });
-                        }}
-                    ></TextInput>
-                    <TextInput
-                        style={styles.input}
-                        secureTextEntry={true}
-                        placeholder="Nhập lại mật khẩu mới"
-                        keyboardType="default"
-                        onChangeText={(text) => {
-                            this.setState((previousState) => {
-                                return {
-                                    typeNewPassWordAgain: text,
-                                };
-                            });
-                        }}
-                    ></TextInput>
-                    <TouchableHighlight>
-                        <View style={styles.list_tin}>
-                            <Text style={styles.button}>xác nhận</Text>
+                <ScrollView>
+                    <View style={styles.view2}>
+                        <Text style={styles.title}>Nhập mật khẩu hiện tại</Text>
+
+                        <View style={styles.inputContainer}>
+                            <View style={{ flex: 1, borderRightColor: '#A8A1A1', borderRightWidth: 1 }}>
+                                <MaterialIcons name="lock-outline" size={22} color="#A8A1A1" style={styles.inputIcon} />
+                            </View>
+                            <TextInput style={styles.textinput}
+                                placeholder='Mật khẩu hiện tại'
+                                placeholderTextColor='#00000061'
+                                underlineColorAndroid='transparent' />
                         </View>
-                    </TouchableHighlight>
+
+                        <Text style={styles.title}>Nhập mật khẩu mới</Text>
+
+                        <View style={styles.inputContainer}>
+                            <MaterialIcons name="lock-outline" size={22} color="#A8A1A1" style={styles.inputIcon} />
+                            <TextInput style={styles.textinput}
+                                placeholder='Mật Khẩu mới'
+                                placeholderTextColor='#00000061'
+                                underlineColorAndroid='transparent'
+                            />
+                        </View>
+
+                        <View style={styles.inputContainer}>
+                            <MaterialCommunityIcons name="lock-check" size={22} color="#A8A1A1" style={styles.inputIcon} />
+                            <TextInput style={styles.textinput}
+                                placeholder='Nhập lại mật Khẩu mới'
+                                placeholderTextColor='#00000061'
+                                underlineColorAndroid='transparent'
+                            />
+                        </View>
+
+                        <TouchableOpacity style={styles.btnDN} onPress={() => this.props.navigation.navigate('Home')}>
+                            <LinearGradient
+                                colors={['#fc3606', '#f44a19', '#fc7704']}
+                                start={[0, 0]}
+                                end={[1, 1]}
+                                location={[0.5, 0.15, 1]}
+                                style={styles.buttonDN}
+                            >
+                                <Text style={styles.text}>CẬP NHẬT</Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
+                    </View>
                 </ScrollView>
-            </View>
+            </View >
         );
     }
 }
@@ -82,46 +77,75 @@ export default class ThayDoiMatKhauComponent extends Component {
 const { width, height } = Dimensions.get("screen");
 const styles = StyleSheet.create({
     container: {
-        flexDirection: "column",
-        marginTop: 16,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "#e6eef2",
+        flex: 1,
+        flexDirection: 'column',
+        width: null,
+        height: null,
+        alignItems: 'stretch',
+        justifyContent: 'center',
     },
-    content: {
-        flexDirection: "column",
+    view2: {
+        flex: 50,
     },
-    content_one: {
-        color: "#74c8f2",
-        paddingStart: 15,
-        fontSize: 20,
-        paddingTop: 25,
+    view3: {
+        flex: 35,
     },
-    list_tin: {
-        flexDirection: "column",
-        flex: 6,
-    },
-    list_item: {
-        flexDirection: "row",
-    },
-    input: {
-        borderColor: "black",
-        borderWidth: 1,
-        width: width / 1.3,
-        padding: 10,
-        marginTop: 10,
-        marginStart: 15,
-        fontSize: 16,
-    },
-    button: {
-        alignSelf: "center",
-        padding: 15,
+    title: {
+        width: WIDTH - 55,
+        marginLeft: 27,
         marginTop: 25,
-        fontSize: 25,
-        textTransform: "uppercase",
-        color: "white",
-        backgroundColor: "#db7623",
-        width: width / 1.3,
-        borderRadius: 6,
+        marginBottom: 5,
+        color: "#424242",
     },
+    inputContainer: {
+        marginTop: 10,
+    },
+    textinput: {
+        width: WIDTH - 55,
+        height: 50,
+        marginLeft: 27,
+        paddingLeft: 50,
+        borderColor: '#A8A1A1',
+        borderWidth: 1,
+        borderRadius: 5
+    },
+
+    inputIcon: {
+        position: 'absolute',
+        marginTop: 14,
+        left: 40,
+        borderRightColor: '#A8A1A1',
+        borderRightWidth: 1,
+        paddingRight: 10
+    },
+    text2: {
+        paddingLeft: 25,
+        marginTop: 15,
+        color: 'skyblue',
+        textDecorationLine: 'underline',
+    },
+    btnDN: {
+        width: WIDTH - 55,
+        height: 50,
+        justifyContent: 'center',
+        borderColor: '#A8A1A1',
+        borderWidth: 1,
+        marginTop: 20,
+        marginLeft: 8,
+        left: 20,
+        borderRadius: 5,
+    },
+    buttonDN: {
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: WIDTH - 55,
+        height: 50,
+        borderRadius: 5,
+    },
+    text: {
+        fontSize: 16,
+        color: 'white',
+        fontWeight: 'bold',
+      },
 });

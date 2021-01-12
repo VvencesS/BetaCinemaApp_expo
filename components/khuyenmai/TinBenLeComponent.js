@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Text, View, Button, StyleSheet, Image, Dimensions, ScrollView, TouchableHighlight, FlatList,
+  Text, View, Button, StyleSheet, Image, Dimensions, ScrollView, TouchableHighlight, FlatList, TouchableOpacity
 } from 'react-native';
 
 import ItemKhuyenMaiComponent from './itemkhuyenmai/ItemKhuyenMaiComponent';
@@ -61,12 +61,12 @@ export default class KhuyenMaiMoiComponent extends Component {
           data={listTinBenLe}
           renderItem={({ item, index }) => {
             return (
-              <TouchableHighlight
+              <TouchableOpacity
                 onPress={() =>
                   this.props.navigation.navigate("ChiTietKhuyenMai", item)}
               >
                 <ItemKhuyenMaiComponent item={item} index={index} parentFlatList={this} />
-              </TouchableHighlight>
+              </TouchableOpacity>
             );
           }}
           keyExtractor={(item, index) => item.tieuDe}

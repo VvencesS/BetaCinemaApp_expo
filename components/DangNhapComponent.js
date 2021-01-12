@@ -34,8 +34,9 @@ export default class DangNhapComponent extends Component {
               underlineColorAndroid='transparent'
             />
           </View>
-
-          <Text style={styles.text2}>Quên mật khẩu ?</Text>
+          <TouchableOpacity onPress={() => Alert.alert('Thông báo', 'Quý khách vui lòng cố nhớ lại!')}>
+            <Text style={styles.text2}>Quên mật khẩu ?</Text>
+          </TouchableOpacity>
 
           <TouchableOpacity style={styles.btnDN} onPress={() => this.props.navigation.navigate('Home')}>
             <LinearGradient
@@ -70,7 +71,7 @@ export default class DangNhapComponent extends Component {
             <View style={styles.line}></View>
           </View>
 
-          <TouchableOpacity style={{flexDirection: 'column', alignItems: 'center'}} onPress={() => this.props.navigation.navigate('DangKy')}>
+          <TouchableOpacity style={{ flexDirection: 'column', alignItems: 'center' }} onPress={() => this.props.navigation.navigate('DangKy')}>
             <Text style={styles.btnDKText}>Đăng ký tài khoản Beta Cineplex</Text>
           </TouchableOpacity>
 
@@ -167,8 +168,8 @@ const styles = StyleSheet.create({
     marginTop: 45,
     marginLeft: 27,
   },
-  line:{ width: 145, height: 1, backgroundColor: '#A8A1A1' },
-  btnDKText:{
+  line: { width: 145, height: 1, backgroundColor: '#A8A1A1' },
+  btnDKText: {
     fontSize: 18,
     color: '#13141D',
     marginTop: 45,
