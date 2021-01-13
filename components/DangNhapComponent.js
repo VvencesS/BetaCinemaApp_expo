@@ -9,6 +9,45 @@ import { LinearGradient } from "expo-linear-gradient";
 const { width: WIDTH } = Dimensions.get('window')
 
 export default class DangNhapComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      matKhau: "",
+      checkLogin: 0
+    }
+  }
+
+  _onLoginSubmit = () => {
+    return fetch('http://10.0.2.2:3000/api/taikhoan/signin', { //Promise
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: this.state.email,
+        matKhau: this.state.matKhau,
+      })
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ checkLogin: responseJson.success });
+        if (this.state.checkLogin == 1) {
+          console.warn(responseJson);
+          Alert.alert("Thông báo!", "Bạn đã đăng nhập thành công!");
+          this.props.navigation.navigate('Home');
+        }
+        else {
+          console.warn(responseJson);
+          Alert.alert("Thông báo!", "Bạn đã đăng nhập không thành công!");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -23,7 +62,9 @@ export default class DangNhapComponent extends Component {
               keyboardType='email-address'
               placeholder='Email hoặc tên đăng nhập'
               placeholderTextColor='#00000061'
-              underlineColorAndroid='transparent' />
+              underlineColorAndroid='transparent'
+              onChangeText={(email) => this.setState({ email: email })}
+            />
           </View>
 
           <View style={styles.inputContainer}>
@@ -32,13 +73,15 @@ export default class DangNhapComponent extends Component {
               placeholder='Mật Khẩu'
               placeholderTextColor='#00000061'
               underlineColorAndroid='transparent'
+              secureTextEntry={true}
+              onChangeText={(matKhau) => this.setState({ matKhau: matKhau })}
             />
           </View>
           <TouchableOpacity onPress={() => Alert.alert('Thông báo', 'Quý khách vui lòng cố nhớ lại!')}>
             <Text style={styles.text2}>Quên mật khẩu ?</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.btnDN} onPress={() => this.props.navigation.navigate('Home')}>
+          <TouchableOpacity style={styles.btnDN} onPress={this._onLoginSubmit}>
             <LinearGradient
               colors={['#fc3606', '#f44a19', '#fc7704']}
               start={[0, 0]}
