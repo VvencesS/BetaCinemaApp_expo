@@ -6,6 +6,8 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from "expo-linear-gradient";
 
+import { signin } from '../APILinks';
+
 const { width: WIDTH } = Dimensions.get('window')
 
 export default class DangNhapComponent extends Component {
@@ -19,7 +21,8 @@ export default class DangNhapComponent extends Component {
   }
 
   _onLoginSubmit = () => {
-    return fetch('http://10.0.2.2:3000/api/taikhoan/signin', { //Promise
+    console.log(signin)
+    return fetch(signin, { //Promise
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -27,19 +30,20 @@ export default class DangNhapComponent extends Component {
       },
       body: JSON.stringify({
         email: this.state.email,
-        matKhau: this.state.matKhau,
+        matkhau: this.state.matKhau,
       })
     })
       .then((response) => response.json())
       .then((responseJson) => {
         this.setState({ checkLogin: responseJson.success });
         if (this.state.checkLogin == 1) {
-          console.warn(responseJson);
+          console.warn('responseJson ', responseJson);
+
           Alert.alert("Thông báo!", "Bạn đã đăng nhập thành công!");
           this.props.navigation.navigate('Home');
         }
         else {
-          console.warn(responseJson);
+          console.warn('responseJson', responseJson);
           Alert.alert("Thông báo!", "Bạn đã đăng nhập không thành công!");
         }
       })
