@@ -134,7 +134,7 @@ export default class HomeComponent extends Component {
                 <Tab.Screen name="Rạp phim" component={RapPhimComponent} />
                 <Tab.Screen name="Voucher" component={VoucherComponent} />
                 <Tab.Screen name="Khuyến mại" component={KhuyenMaiComponent} />
-                <Tab.Screen name="Tài khoản" component={() => <TaiKhoanStackScreen taiKhoan={this.state.taiKhoan} />} />
+                <Tab.Screen name="Tài khoản" component={() => <TaiKhoanComponent taiKhoan={this.state.taiKhoan} />} />
             </Tab.Navigator>
         );
     }

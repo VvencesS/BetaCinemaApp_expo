@@ -13,19 +13,66 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 
+import {urlUpdateTK, urlLocalhost} from '../../APILinks';
+
 const { width: WIDTH } = Dimensions.get('window')
 
 export default class ThongTinTaiKhoanComponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSelected: false,
+            id: this.props.taiKhoan.id,
+            hoten: this.props.taiKhoan.hoten,
+            email: this.props.taiKhoan.email,
+            sodienthoai: this.props.taiKhoan.soDienThoai,
+            ngaysinh: this.props.taiKhoan.ngaySinh,
+            gioitinh: this.props.taiKhoan.gioiTinh,
+            cmt: this.props.taiKhoan.cmt,
+            tinhthanhpho_id: this.props.taiKhoan.tinhthanhpho_id,
+            quanhuyen_id: this.props.taiKhoan.quanhuyen_id,
+            diachilienhe: this.props.taiKhoan.diachilienhe,
         }
-    }
 
-    showAddModal = () => {
-        this.refs.thongTinTKModal.open();
-    } 
+    }
+    _onUpdateSubmit = () => {
+        console.log(urlLocalhost + urlUpdateTK)
+        return fetch(urlLocalhost + urlUpdateTK, {
+          method: 'PUT',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            hoten: this.state.hoTen,
+            email: this.state.email,
+            sodienthoai: this.state.soDienThoai,
+            ngaysinh: this.state.ngaySinh,
+            gioitinh: this.state.gioiTinh,
+            cmt: this.state.cmt,
+            tinhthanhpho_id: this.state.tinhthanhpho_id,
+            quanhuyen_id: this.state.quanhuyen_id,
+            diachilienhe: this.state.diachilienhe,
+          })
+        })
+          .then((response) => response.json())
+          .then((responseJson) => {
+            this.setState({ success: responseJson.success });
+            if (this.state.success == 1) {
+              console.warn('responseJson ', responseJson);
+    
+              this.props.navigation.navigate('DangNhap', { 
+                taiKhoan: responseJson.taiKhoan,
+                token: responseJson.token,
+              });
+            }
+            else {
+              console.warn('responseJson', responseJson);
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
 
     render() {
 
@@ -55,27 +102,30 @@ export default class ThongTinTaiKhoanComponent extends Component {
                                     <FontAwesome5 name="user-circle" size={22} color="#A8A1A1" style={styles.imputIcon} />
                                 </View>
                                 <TextInput style={styles.textinput}
-                                    value='Trần Đức Soạn'
+                                    value={this.props.taiKhoan.hoten}
                                     placeholder='Họ Tên'
                                     placeholderTextColor='#00000061'
-                                    underlineColorAndroid='transparent' />
+                                    underlineColorAndroid='transparent' 
+                                    onChangeText={(hoten) => this.setState({ hoTen: hoten })}/>
                             </View>
                             <View style={styles.imputContainer}>
                                 <FontAwesome name="transgender" size={22} color="#A8A1A1" style={styles.imputIcon} />
                                 <TextInput style={styles.textinput}
-                                    value='Nam'
+                                    value={this.props.taiKhoan.gioitinh}
                                     placeholder='Giới tính'
                                     placeholderTextColor='#00000061'
                                     underlineColorAndroid='transparent'
+                                    onChangeText={(gioitinh) => this.setState({ gioitinh: gioitinh })}
                                 />
                             </View>
                             <View style={styles.imputContainer}>
                                 <MaterialIcons name="cake" size={22} color="#A8A1A1" style={styles.imputIcon} />
                                 <TextInput style={styles.textinput}
-                                    value='11-10-1999'
+                                    value={this.props.taiKhoan.ngaysinh}
                                     placeholder='Ngày sinh'
                                     placeholderTextColor='#00000061'
                                     underlineColorAndroid='transparent'
+                                    onChangeText={(ngaysinh) => this.setState({ ngaysinh: ngaysinh })}
                                 />
                             </View>
                         </View>
@@ -87,53 +137,58 @@ export default class ThongTinTaiKhoanComponent extends Component {
                             <View style={styles.imputContainer} >
                                 <AntDesign name="idcard" size={22} color="#A8A1A1" style={styles.imputIcon} />
                                 <TextInput style={styles.textinput}
-                                    value='036099007701'
+                                    value={this.props.taiKhoan.cmt}
                                     placeholder='Thẻ căn cước/CMT'
                                     placeholderTextColor='#00000061'
                                     underlineColorAndroid='transparent'
+                                    onChangeText={(cmt) => this.setState({ cmt: cmt })}
                                 />
                             </View>
                             <View style={styles.imputContainer}>
                                 <SimpleLineIcons name="screen-smartphone" size={22} color="#A8A1A1" style={styles.imputIcon} />
                                 <TextInput style={styles.textinput}
-                                    value='0335715608'
+                                    value={this.props.taiKhoan.sodienthoai}
                                     placeholder='Số Điện Thoại'
                                     placeholderTextColor='#00000061'
                                     underlineColorAndroid='transparent'
+                                    onChangeText={(sodienthoai) => this.setState({ sodienthoai: sodienthoai })}
                                 />
                             </View>
                             <View style={styles.imputContainer} >
                                 <MaterialCommunityIcons name="city-variant-outline" size={22} color="#A8A1A1" style={styles.imputIcon} />
                                 <TextInput style={styles.textinput}
-                                    value='Nam Định'
+                                    value={this.props.taiKhoan.tinhthanhpho_id}
                                     placeholder='Tỉnh/Thành phố'
                                     placeholderTextColor='#00000061'
                                     underlineColorAndroid='transparent'
+                                    onChangeText={(tinhthanhpho_id) => this.setState({ tinhthanhpho_id: tinhthanhpho_id })}
                                 />
                             </View>
                             <View style={styles.imputContainer}>
                                 <MaterialCommunityIcons name="home-outline" size={22} color="#A8A1A1" style={styles.imputIcon} />
                                 <TextInput style={styles.textinput}
-                                    value='Giao Thủy'
+                                    value={this.props.taiKhoan.quanhuyen_id}
                                     placeholder='Quận/Huyện'
                                     placeholderTextColor='#00000061'
                                     underlineColorAndroid='transparent'
+                                    onChangeText={(quanhuyen_id) => this.setState({ quanhuyen_id: quanhuyen_id })}
                                 />
                             </View>
                             <View style={styles.imputContainer}>
                                 <Octicons name="location" size={22} color="#A8A1A1" style={styles.imputIcon} />
                                 <TextInput style={styles.textinput}
-                                    value='Giao Thiện'
+                                    value={this.props.taiKhoan.diachilienhe}
                                     placeholder='Địa chỉ'
                                     placeholderTextColor='#00000061'
                                     underlineColorAndroid='transparent'
+                                    onChangeText={(diachilienhe) => this.setState({ diachilienhe: diachilienhe })}
                                 />
                             </View>
                         </View>
 
                         <TouchableOpacity
                             style={styles.btnDN}
-                            onPress={() => this.props.navigation.navigate('DangNhap')}
+                            onPress={this._onUpdateSubmit}
                         >
                             <LinearGradient
                                 colors={['#0a64a7', '#258dcf', '#3db1f3']}

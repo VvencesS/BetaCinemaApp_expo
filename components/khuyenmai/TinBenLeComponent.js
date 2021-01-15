@@ -84,7 +84,6 @@ export default class TinBenLeComponent extends Component {
         }
         else {
           console.warn('responseJson', responseJson);
-          Alert.alert("Thông báo!", responseJson.message);
         }
       })
       .catch((error) => {

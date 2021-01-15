@@ -26,7 +26,7 @@ export default class VoucherComponent extends Component {
 
                 <TouchableOpacity
                     style={styles.btnDN}
-                    onPress={() => Alert.alert("Thông báo", "Hiện không có voucher miễn phí nào!")}
+                    onPress={() => {Alert.alert("Thông báo", "Hiện không có voucher miễn phí nào!")}}
                 >
                     <LinearGradient
                         colors={['#0a64a7', '#258dcf', '#3db1f3']}

@@ -48,7 +48,6 @@ export default class DangNhapComponent extends Component {
         }
         else {
           console.warn('responseJson', responseJson);
-          Alert.alert("Thông báo!", "Bạn đã đăng nhập không thành công!");
         }
       })
       .catch((error) => {

@@ -50,7 +50,6 @@ export default class SlideImageComponent extends Component {
                 }
                 else {
                     console.warn('responseJson', responseJson);
-                    Alert.alert("Thông báo!", responseJson.message);
                 }
             })
             .catch((error) => {
