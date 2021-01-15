@@ -15,11 +15,11 @@ export default class ItemPhimDangChieuComponent extends Component {
             <View style={{ flex: 1, flexDirection: 'column' }} style={styles.itemPhim}>
 
                 <View style={{ flex: 8, }}>
-                    <Image source={{uri: this.props.item.anhPhim}} style={styles.filmImg} />
+                    <Image source={{uri: this.props.item.anhphim}} style={styles.filmImg} />
                 </View>
                 <View style={{ flex: 2, alignItems: 'center' }}>
-                    <Text style={styles.filmName}>{this.props.item.tenPhim}</Text>
-                    <Text style={styles.filmTime}>{this.props.item.thoiLuong}</Text>
+                    <Text style={styles.filmName}>{this.props.item.tenphim}</Text>
+                    <Text style={styles.filmTime}>{this.props.item.thoiluong}</Text>
                 </View >
 
             </View>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
     Text,
     View,
@@ -8,11 +8,32 @@ import {
     ImageBackground,
     ScrollView,
     TouchableHighlight,
+    TouchableOpacity,
 } from "react-native";
 
-const image = { uri: "https://reactjs.org/logo-og.png"};
+import { MaterialIcons } from '@expo/vector-icons';
 
-export default class ThanhVienBetaComponent extends Component {
+import ThongTinTaiKhoanComponent from '../taikhoan/ThongTinTaiKhoanComponent';
+
+const avatar = { uri: "https://avatars2.githubusercontent.com/u/54681614?s=460&u=665b6bfff00f4ae8524deda9a68fb526090815a9&v=4" };
+const code = { uri: "https://raw.githubusercontent.com/VvencesS/BetaCinemaApp_expo/anhs/images/code.jpg" };
+
+import { urlLocalhost } from '../../APILinks';
+
+export default class TaiKhoanComponent extends Component {
+    constructor(props) {
+        super(props);
+        console.log('TaiKhoanComponent ', props);
+        this.setState = {
+            taiKhoan: this.props.taiKhoan
+        }
+    }
+
+    _onPressThongTinTK = () => {
+        // alert('You add item');
+        this.refs.thongTinTKModal.showThongTinTKModal();
+    }
+
     render() {
         return (
             <ScrollView>
@@ -20,7 +41,7 @@ export default class ThanhVienBetaComponent extends Component {
                     <View style={styles.title}>
                         <ImageBackground
                             style={styles.background}
-                            source={image}
+                            source={{ uri: urlLocalhost + this.props.taiKhoan.anhdaidien }}
                         ></ImageBackground>
                     </View>
                     <View style={styles.content}>
@@ -28,45 +49,53 @@ export default class ThanhVienBetaComponent extends Component {
                             <View>
                                 <Image
                                     style={styles.avatar}
-                                    source={image}
+                                    source={{ uri: urlLocalhost + this.props.taiKhoan.anhdaidien }}
                                 ></Image>
                             </View>
                             <View>
-                                <Text style={styles.name}>Khổng Ngọc Ánh</Text>
+                                <Text style={styles.name}>{this.props.taiKhoan.hoten}</Text>
                             </View>
                             <View style={styles.card}>
                                 <Text style={styles.card_text}>Thẻ thành viên</Text>
-                                <Text style={styles.card_number}>9002000001061499</Text>
+                                <Text style={styles.card_number}>{this.props.taiKhoan.sothethanhvien}</Text>
                             </View>
                             <View>
                                 <Image
                                     style={styles.code}
-                                    source={{ uri: 'https://raw.githubusercontent.com/VvencesS/BetaCinemaApp_expo/anhs/images/code.jpg'}}
+                                    source={code}
                                 ></Image>
                             </View>
                         </View>
                         <View style={styles.touch}>
-                            <TouchableHighlight onPress={() => this.props.navigation.navigate('Home')}>
-                                <View>
-                                    <Text style={styles.touch_text} >Thông tin tài khoản</Text>
+                            <TouchableOpacity onPress={this._onPressThongTinTK}>
+                                <View style={styles.touch_text} >
+                                    <Text style={styles.text} >Thông tin tài khoản</Text>
+                                    <View style={styles.backgroundIcon} >
+                                        <MaterialIcons name="keyboard-arrow-right" size={22} color="#585858" />
+                                    </View>
                                 </View>
-                            </TouchableHighlight>
-                            <Text></Text>
-                            <TouchableHighlight onPress={() => this.props.navigation.navigate('ThayDoiMatKhau')}>
-                                <View>
-                                    <Text style={styles.touch_text}>Thay đổi mật khẩu</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('ThayDoiMatKhau')}>
+                                <View style={styles.touch_text}>
+                                    <Text style={styles.text}>Thay đổi mật khẩu</Text>
+                                    <View style={styles.backgroundIcon} >
+                                        <MaterialIcons name="keyboard-arrow-right" size={22} color="#585858" />
+                                    </View>
                                 </View>
-                            </TouchableHighlight>
+                            </TouchableOpacity>
                         </View>
-                    </View>
-                    <View style={styles.button}>
-                        <TouchableHighlight onPress={() => this.props.navigation.navigate('DangNhap')}>
-                            <View>
-                                <Text style={styles.button_text}>Đăng Xuất</Text>
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('DangNhap')}>
+                            <View style={styles.btnDX}>
+                                <Text style={styles.button_text}>Đăng xuất</Text>
                             </View>
-                        </TouchableHighlight>
+                        </TouchableOpacity>
                     </View>
+
                 </View>
+                {/* <ThongTinTaiKhoanComponent ref={"thongTinTKModal"} parentFlatList={this} >
+
+                </ThongTinTaiKhoanComponent> */}
             </ScrollView>
         );
     }
@@ -83,11 +112,15 @@ const styles = StyleSheet.create({
     title: {
         flex: 2.5,
         flexDirection: "column",
+        alignItems: 'center',
     },
     background: {
         width: width,
-        height: height / 3.5,
-        opacity: 0.9,
+        height: height / 5,
+        opacity: 0.8,
+        borderBottomLeftRadius: width / 6,
+        borderBottomRightRadius: width / 6,
+        backgroundColor: '#0b5170',
     },
     member: {
         width: width / 1.05,
@@ -96,6 +129,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         shadowOpacity: 0.5,
         margin: 10,
+        borderRadius: 5,
     },
     avatar: {
         width: 100,
@@ -106,9 +140,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
     },
     name: {
-        fontSize: 24,
-        fontWeight: "600",
+        fontSize: 22,
+        fontWeight: "bold",
         margin: 10,
+        color: '#1C1C1C',
     },
     code: {
         width: width / 1.1,
@@ -120,10 +155,12 @@ const styles = StyleSheet.create({
     },
     card_text: {
         flex: 1,
-        fontSize: 16,
+        fontSize: 15,
+        color: '#6E6E6E',
     },
     card_number: {
-        fontSize: 17,
+        fontSize: 18,
+        color: '#6E6E6E',
     },
     content: {
         flex: 8,
@@ -134,23 +171,46 @@ const styles = StyleSheet.create({
     },
     touch: {
         flexDirection: "column",
-        alignSelf: "flex-start",
+        alignSelf: "center",
+        justifyContent: 'center',
     },
     touch_text: {
-        fontSize: 20,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
         backgroundColor: "white",
-        width: width,
-        height: height / 10,
-        paddingTop: 20,
-        paddingStart: 10,
+        width: width / 1.05,
+        height: height / 14,
+        marginBottom: 10,
+        borderRadius: 5,
     },
-    button: {
-        flex: 0.3,
-        alignItems: "flex-start",
-        margin: 10,
+    text: {
+        fontSize: 16,
+        color: "#6E6E6E",
+        paddingLeft: 15,
+    },
+    backgroundIcon: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+        marginRight: 5,
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        backgroundColor: "#E6E6E6",
+        opacity: 0.5,
+    },
+    btnDX: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        width: width / 1.05,
+        height: height / 14,
+        marginBottom: 10,
     },
     button_text: {
-        fontSize: 20,
+        fontSize: 16,
+        paddingLeft: 15,
         color: "red",
     },
 });

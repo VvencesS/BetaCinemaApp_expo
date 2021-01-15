@@ -15,10 +15,10 @@ export default class ItemKhuyenMaiComponent extends Component {
                 <View style={styles.list_item}>
                     <Image
                         style={styles.image}
-                        source={{ uri: this.props.item.anhTin, }}
+                        source={{ uri: this.props.item.anhtmvakm, }}
                     />
                     <Text style={{ width: screen.width * 0.49 }}></Text>
-                    <Text style={styles.text}>{this.props.item.tieuDe}</Text>
+                    <Text style={styles.text}>{this.props.item.tentmvakm}</Text>
                 </View>
             </View>
         );

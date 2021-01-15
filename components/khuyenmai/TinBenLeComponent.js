@@ -5,6 +5,8 @@ import {
 
 import ItemKhuyenMaiComponent from './itemkhuyenmai/ItemKhuyenMaiComponent';
 
+import { urlNews, urlLocalhost } from '../../APILinks';
+
 const listTinBenLe = [
   {
     anhTin: 'https://files.betacorp.vn/files/ecm/2020/12/22/3-180723-221220-68.png',
@@ -52,13 +54,60 @@ const listTinBenLe = [
   },
 ]
 
-export default class KhuyenMaiMoiComponent extends Component {
+export default class TinBenLeComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      success: 0,
+      allNews: [],
+    }
+  }
+
+  componentDidMount() {
+    this.getAllNews()
+  }
+
+  getAllNews = () => {
+    console.log(urlLocalhost + urlNews)
+    return fetch(urlLocalhost + urlNews, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+
+        this.setState({ success: responseJson.success });
+        if (this.state.success == 1) {
+
+          this.setState({ allNews: responseJson.news });
+          console.log('allNews ', this.state.allNews);
+        }
+        else {
+          console.warn('responseJson', responseJson);
+          Alert.alert("Thông báo!", responseJson.message);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <FlatList
           style={styles.list_tin}
-          data={listTinBenLe}
+          data={
+            this.state.allNews.map(item => {
+              return {
+                _id: item._id,
+                loaitmvakm: item.loaitmvakm,
+                tentmvakm: item.tentmvakm,
+                noidunng: item.noidunng,
+                anhtmvakm: urlLocalhost + item.anhtmvakm,
+              }
+            })
+          }
           renderItem={({ item, index }) => {
             return (
               <TouchableOpacity

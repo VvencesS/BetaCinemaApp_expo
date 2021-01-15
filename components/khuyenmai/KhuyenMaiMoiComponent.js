@@ -5,6 +5,8 @@ import {
 
 import ItemKhuyenMaiComponent from './itemkhuyenmai/ItemKhuyenMaiComponent';
 
+import {urlOffers, urlLocalhost} from '../../APILinks';
+
 const listTinBenLe = [
     {
         anhTin: 'https://files.betacorp.vn/files/ecm/2021/01/11/545x415-student-combo-171511-110121-29.jpg',
@@ -61,12 +63,59 @@ const listTinBenLe = [
 ]
 
 export default class KhuyenMaiMoiComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            success: 0,
+            allOffers: [],
+        }
+    }
+
+    componentDidMount() {
+        this.getAllOffers()
+    }
+
+    getAllOffers = () => {
+        console.log(urlLocalhost + urlOffers)
+        return fetch(urlLocalhost + urlOffers, {
+            method: 'GET',
+        })
+            .then((response) => response.json())
+            .then((responseJson) => {
+                console.log(responseJson);
+
+                this.setState({ success: responseJson.success });
+                if (this.state.success == 1) {
+
+                    this.setState({ allOffers: responseJson.offers });
+                    console.log('allOffers ', this.state.allOffers);
+                }
+                else {
+                    console.warn('responseJson', responseJson);
+                    Alert.alert("Thông báo!", responseJson.message);
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+
     render() {
         return (
             <View style={styles.container}>
                 <FlatList
                     style={styles.list_tin}
-                    data={listTinBenLe}
+                    data={
+                        this.state.allOffers.map(item => {
+                            return {
+                                _id: item._id,
+                                loaitmvakm: item.loaitmvakm,
+                                tentmvakm: item.tentmvakm,
+                                noidunng: item.noidunng,
+                                anhtmvakm: urlLocalhost + item.anhtmvakm,
+                            }
+                        })
+                    }
                     renderItem={({ item, index }) => {
                         return (
                             <TouchableOpacity onPress={() => this.props.navigation.navigate("ChiTietKhuyenMai", item)} >

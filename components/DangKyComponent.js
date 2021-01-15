@@ -11,13 +11,63 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 
+import { urlSignup, urlLocalhost } from '../APILinks';
+
 const { width: WIDTH } = Dimensions.get('window')
 export default class DangKyComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isSelected: false,
+      hoTen: '',
+      email: '',
+      matKhau: '',
+      nhapLaiMK: '',
+      soDienThoai: '',
+      ngaySinh: '',
+      gioiTinh: '',
+      token: '',
+      success: 0,
     }
+  }
+
+  _onRegisterSubmit = () => {
+    console.log(urlLocalhost + urlSignup)
+    return fetch(urlLocalhost + urlSignup, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        hoten: this.state.hoTen,
+        email: this.state.email,
+        matkhau: this.state.matKhau,
+        nhaplaimk: this.state.nhapLaiMK,
+        sodienthoai: this.state.soDienThoai,
+        ngaysinh: this.state.ngaySinh,
+        gioitinh: this.state.gioiTinh,
+      })
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ success: responseJson.success });
+        if (this.state.success == 1) {
+          console.warn('responseJson ', responseJson);
+
+          this.props.navigation.navigate('DangNhap', { 
+            taiKhoan: responseJson.taiKhoan,
+            token: responseJson.token,
+          });
+        }
+        else {
+          console.warn('responseJson', responseJson);
+          Alert.alert("Thông báo!", responseJson.message);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
@@ -36,7 +86,8 @@ export default class DangKyComponent extends Component {
               <TextInput style={styles.textinput}
                 placeholder='Họ Tên'
                 placeholderTextColor='#00000061'
-                underlineColorAndroid='transparent' />
+                underlineColorAndroid='transparent'
+                onChangeText={(hoten) => this.setState({ hoTen: hoten })} />
 
               <View style={styles.imputContainer}>
 
@@ -45,6 +96,7 @@ export default class DangKyComponent extends Component {
                   placeholder='Email'
                   placeholderTextColor='#00000061'
                   underlineColorAndroid='transparent'
+                  onChangeText={(email) => this.setState({ email: email })}
                 />
               </View>
 
@@ -54,6 +106,8 @@ export default class DangKyComponent extends Component {
                   placeholder='Mật Khẩu'
                   placeholderTextColor='#00000061'
                   underlineColorAndroid='transparent'
+                  secureTextEntry={true}
+                  onChangeText={(matkhau) => this.setState({ matKhau: matkhau })}
                 />
               </View>
               <View style={styles.imputContainer}>
@@ -62,6 +116,8 @@ export default class DangKyComponent extends Component {
                   placeholder='Nhập Lại Mật Khẩu'
                   placeholderTextColor='#00000061'
                   underlineColorAndroid='transparent'
+                  secureTextEntry={true}
+                  onChangeText={(nhaplaimk) => this.setState({ nhapLaiMK: nhaplaimk })}
                 />
               </View>
               <View style={styles.imputContainer}>
@@ -70,6 +126,7 @@ export default class DangKyComponent extends Component {
                   placeholder='Số Điện Thoại'
                   placeholderTextColor='#00000061'
                   underlineColorAndroid='transparent'
+                  onChangeText={(sodienthoai) => this.setState({ soDienThoai: sodienthoai })}
                 />
               </View>
             </View>
@@ -84,6 +141,7 @@ export default class DangKyComponent extends Component {
                 placeholder='Ngày sinh'
                 placeholderTextColor='#00000061'
                 underlineColorAndroid='transparent'
+                onChangeText={(ngaysinh) => this.setState({ ngaySinh: ngaysinh })}
               />
             </View>
             <View style={styles.imputContainer}>
@@ -92,6 +150,7 @@ export default class DangKyComponent extends Component {
                 placeholder='Giới tính'
                 placeholderTextColor='#00000061'
                 underlineColorAndroid='transparent'
+                onChangeText={(gioitinh) => this.setState({ gioiTinh: gioitinh })}
               />
             </View>
             <View style={styles.checkboxContainer}>
@@ -111,11 +170,7 @@ export default class DangKyComponent extends Component {
                 <Text> </Text>
                 <Text style={{ fontSize: 16, }}>và</Text>
                 <Text> </Text>
-                <Text style={styles.colorLink}
-                  onPress={() => Alert.alert('Thông báo', 'Vui lòng lên trang chủ để xem chi tiết!')}
-                >
-                  điều khoản sử dụng
-                </Text>
+                
                 <Text> </Text>
                 <Text style={{ fontSize: 16, }}>của BetaCineplex.</Text>
               </Text>
@@ -124,7 +179,7 @@ export default class DangKyComponent extends Component {
 
           <TouchableOpacity
             style={styles.btnDN}
-            onPress={() => this.props.navigation.navigate('DangNhap')}
+            onPress={this._onRegisterSubmit}
           >
             <LinearGradient
               colors={['#0a64a7', '#258dcf', '#3db1f3']}

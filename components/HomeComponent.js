@@ -17,6 +17,11 @@ import VoucherComponent from './home/VoucherComponent';
 import KhuyenMaiComponent from './home/KhuyenMaiComponent';
 import TaiKhoanComponent from './home/TaiKhoanComponent';
 import HeaderBarLichChieu from './home/HeaderBarLichChieu';
+import ThongTinTaiKhoanComponent from './taikhoan/ThongTinTaiKhoanComponent';
+import ThayDoiMatKhauComponent from './taikhoan/ThayDoiMatkhauComponent';
+
+
+import { urlNowShowing } from '../APILinks';
 
 const LichChieuTheoPhimStack = createStackNavigator();
 const RapPhimStack = createStackNavigator();
@@ -25,14 +30,14 @@ const KhuyenMaiStack = createStackNavigator();
 const TaiKhoanStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-function LichChieuTheoPhimStackScreen({navigation, route}) {
+function LichChieuTheoPhimStackScreen({ route }) {
     return (
         <LichChieuTheoPhimStack.Navigator>
             <LichChieuTheoPhimStack.Screen
                 name="Phim chiếu"
-                component={LichChieuTheoPhimComponent}
-                options={{ 
-                    headerTitle: props => <HeaderBarLichChieu {...props} navigation={navigation} />,
+                component={() => <LichChieuTheoPhimComponent allNowShowingMovie={route.params.allNowShowingMovie} />}
+                options={{
+                    headerTitle: props => <HeaderBarLichChieu />,
                     headerLeft: null
                 }}
             />
@@ -60,16 +65,34 @@ function KhuyenMaiStackScreen() {
         </KhuyenMaiStack.Navigator>
     );
 }
-function TaiKhoanStackScreen() {
-    return (
-        <TaiKhoanStack.Navigator>
-            <TaiKhoanStack.Screen name="Tài khoản" component={TaiKhoanComponent} />
-        </TaiKhoanStack.Navigator>
-    );
+class TaiKhoanStackScreen extends Component {
+    constructor(props) {
+        super(props);
+        console.log('TaiKhoanStackScreen ', props)
+    }
+    render() {
+        return (
+            <TaiKhoanStack.Navigator>
+                <TaiKhoanStack.Screen name="Tài khoản" component={() => <TaiKhoanComponent taiKhoan={this.props.taiKhoan} />} />
+            </TaiKhoanStack.Navigator>
+        );
+    }
 }
 
 export default class HomeComponent extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            success: 0,
+            token: this.props.route.params.token,
+            taiKhoan: this.props.route.params.taiKhoan,
+            allNowShowingMovie: [],
+        }
+
+    }
+
     render() {
+        console.log('token ', this.state.token);
         return (
             <Tab.Navigator
                 screenOptions={({ route }) => ({
@@ -105,13 +128,13 @@ export default class HomeComponent extends Component {
             >
                 <Tab.Screen
                     name="Phim chiếu"
-                    component={LichChieuTheoPhimStackScreen}
+                    component={LichChieuTheoPhimComponent}
 
                 />
-                <Tab.Screen name="Rạp phim" component={RapPhimStackScreen} />
-                <Tab.Screen name="Voucher" component={VoucherStackScreen} />
-                <Tab.Screen name="Khuyến mại" component={KhuyenMaiStackScreen} />
-                <Tab.Screen name="Tài khoản" component={TaiKhoanStackScreen} />
+                <Tab.Screen name="Rạp phim" component={RapPhimComponent} />
+                <Tab.Screen name="Voucher" component={VoucherComponent} />
+                <Tab.Screen name="Khuyến mại" component={KhuyenMaiComponent} />
+                <Tab.Screen name="Tài khoản" component={() => <TaiKhoanStackScreen taiKhoan={this.state.taiKhoan} />} />
             </Tab.Navigator>
         );
     }

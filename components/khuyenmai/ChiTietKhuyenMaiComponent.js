@@ -21,13 +21,13 @@ export default class ChiTietKhuyenMaiComponent extends Component {
                 <View style={styles.container}>
                     <Image
                         style={styles.image}
-                        source={{ uri: this.state.item.anhTin }}
+                        source={{ uri: this.state.item.anhtmvakm }}
                     />
                     <Text style={styles.title}>
-                        {this.state.item.tieuDe}
+                        {this.state.item.tentmvakm}
                     </Text>
                     <Text style={styles.content}>
-                        {this.state.item.noiDung}
+                        {this.state.item.noidunng}
                     </Text>
                 </View>
             </ScrollView>

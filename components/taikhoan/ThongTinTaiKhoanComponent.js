@@ -3,6 +3,7 @@ import {
     Text, View, CheckBox, TextInput, StyleSheet, Button, Dimensions, TouchableOpacity, Picker, ScrollView, TouchableHighlight, Alert
 } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
+import Modal from 'react-native-modalbox';
 
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -22,117 +23,131 @@ export default class ThongTinTaiKhoanComponent extends Component {
         }
     }
 
+    showAddModal = () => {
+        this.refs.thongTinTKModal.open();
+    } 
+
     render() {
 
         return (
-            <ScrollView>
-                <View style={styles.container}>
-                    <View style={styles.view}>
-                        <Text style={styles.title}>THÔNG TIN CƠ BẢN</Text>
-                    </View>
-                    <View style={styles.view1}>
-                        <View style={{ flexDirection: 'row', marginLeft: 27, marginTop: 15 }}>
-                            <Text style={{ fontSize: 16, color: "#585858" }}>EMAIL</Text>
-                            <Text style={{ width: 20, }}></Text>
-                            <Text style={{ fontSize: 16, color: "#585858" }}>DucSoan99@gmail.com</Text>
+            // <Modal
+            //     ref={"thongTinTKModal"}
+            //     style={{
+            //         justifyContent: 'center', borderRadius: 5, shadowRadius: 10,
+            //         width: screen.width - 10, height: 280
+            //     }}
+            //     position='center'
+            //     backdrop={true}
+            // >
+                <ScrollView>
+                    <View style={styles.container}>
+                        <View style={styles.view}>
+                            <Text style={styles.title}>THÔNG TIN CƠ BẢN</Text>
                         </View>
-                        <View style={styles.imputContainer}>
-                            <View style={{ flex: 1, borderRightColor: '#A8A1A1', borderRightWidth: 1 }}>
-                                <FontAwesome5 name="user-circle" size={22} color="#A8A1A1" style={styles.imputIcon} />
+                        <View style={styles.view1}>
+                            <View style={{ flexDirection: 'row', marginLeft: 27, marginTop: 15 }}>
+                                <Text style={{ fontSize: 16, color: "#585858" }}>EMAIL</Text>
+                                <Text style={{ width: 20, }}></Text>
+                                <Text style={{ fontSize: 16, color: "#585858" }}>DucSoan99@gmail.com</Text>
                             </View>
-                            <TextInput style={styles.textinput}
-                                value='Trần Đức Soạn'
-                                placeholder='Họ Tên'
-                                placeholderTextColor='#00000061'
-                                underlineColorAndroid='transparent' />
+                            <View style={styles.imputContainer}>
+                                <View style={{ flex: 1, borderRightColor: '#A8A1A1', borderRightWidth: 1 }}>
+                                    <FontAwesome5 name="user-circle" size={22} color="#A8A1A1" style={styles.imputIcon} />
+                                </View>
+                                <TextInput style={styles.textinput}
+                                    value='Trần Đức Soạn'
+                                    placeholder='Họ Tên'
+                                    placeholderTextColor='#00000061'
+                                    underlineColorAndroid='transparent' />
+                            </View>
+                            <View style={styles.imputContainer}>
+                                <FontAwesome name="transgender" size={22} color="#A8A1A1" style={styles.imputIcon} />
+                                <TextInput style={styles.textinput}
+                                    value='Nam'
+                                    placeholder='Giới tính'
+                                    placeholderTextColor='#00000061'
+                                    underlineColorAndroid='transparent'
+                                />
+                            </View>
+                            <View style={styles.imputContainer}>
+                                <MaterialIcons name="cake" size={22} color="#A8A1A1" style={styles.imputIcon} />
+                                <TextInput style={styles.textinput}
+                                    value='11-10-1999'
+                                    placeholder='Ngày sinh'
+                                    placeholderTextColor='#00000061'
+                                    underlineColorAndroid='transparent'
+                                />
+                            </View>
                         </View>
-                        <View style={styles.imputContainer}>
-                            <FontAwesome name="transgender" size={22} color="#A8A1A1" style={styles.imputIcon} />
-                            <TextInput style={styles.textinput}
-                                value='Nam'
-                                placeholder='Giới tính'
-                                placeholderTextColor='#00000061'
-                                underlineColorAndroid='transparent'
-                            />
-                        </View>
-                        <View style={styles.imputContainer}>
-                            <MaterialIcons name="cake" size={22} color="#A8A1A1" style={styles.imputIcon} />
-                            <TextInput style={styles.textinput}
-                                value='11-10-1999'
-                                placeholder='Ngày sinh'
-                                placeholderTextColor='#00000061'
-                                underlineColorAndroid='transparent'
-                            />
-                        </View>
-                    </View>
 
-                    <View style={styles.view}>
-                        <Text style={styles.title}>THÔNG TIN LIÊN HỆ</Text>
-                    </View>
-                    <View style={styles.view2}>
-                        <View style={styles.imputContainer} >
-                            <AntDesign name="idcard" size={22} color="#A8A1A1" style={styles.imputIcon} />
-                            <TextInput style={styles.textinput}
-                                value='036099007701'
-                                placeholder='Thẻ căn cước/CMT'
-                                placeholderTextColor='#00000061'
-                                underlineColorAndroid='transparent'
-                            />
+                        <View style={styles.view}>
+                            <Text style={styles.title}>THÔNG TIN LIÊN HỆ</Text>
                         </View>
-                        <View style={styles.imputContainer}>
-                            <SimpleLineIcons name="screen-smartphone" size={22} color="#A8A1A1" style={styles.imputIcon} />
-                            <TextInput style={styles.textinput}
-                                value='0335715608'
-                                placeholder='Số Điện Thoại'
-                                placeholderTextColor='#00000061'
-                                underlineColorAndroid='transparent'
-                            />
+                        <View style={styles.view2}>
+                            <View style={styles.imputContainer} >
+                                <AntDesign name="idcard" size={22} color="#A8A1A1" style={styles.imputIcon} />
+                                <TextInput style={styles.textinput}
+                                    value='036099007701'
+                                    placeholder='Thẻ căn cước/CMT'
+                                    placeholderTextColor='#00000061'
+                                    underlineColorAndroid='transparent'
+                                />
+                            </View>
+                            <View style={styles.imputContainer}>
+                                <SimpleLineIcons name="screen-smartphone" size={22} color="#A8A1A1" style={styles.imputIcon} />
+                                <TextInput style={styles.textinput}
+                                    value='0335715608'
+                                    placeholder='Số Điện Thoại'
+                                    placeholderTextColor='#00000061'
+                                    underlineColorAndroid='transparent'
+                                />
+                            </View>
+                            <View style={styles.imputContainer} >
+                                <MaterialCommunityIcons name="city-variant-outline" size={22} color="#A8A1A1" style={styles.imputIcon} />
+                                <TextInput style={styles.textinput}
+                                    value='Nam Định'
+                                    placeholder='Tỉnh/Thành phố'
+                                    placeholderTextColor='#00000061'
+                                    underlineColorAndroid='transparent'
+                                />
+                            </View>
+                            <View style={styles.imputContainer}>
+                                <MaterialCommunityIcons name="home-outline" size={22} color="#A8A1A1" style={styles.imputIcon} />
+                                <TextInput style={styles.textinput}
+                                    value='Giao Thủy'
+                                    placeholder='Quận/Huyện'
+                                    placeholderTextColor='#00000061'
+                                    underlineColorAndroid='transparent'
+                                />
+                            </View>
+                            <View style={styles.imputContainer}>
+                                <Octicons name="location" size={22} color="#A8A1A1" style={styles.imputIcon} />
+                                <TextInput style={styles.textinput}
+                                    value='Giao Thiện'
+                                    placeholder='Địa chỉ'
+                                    placeholderTextColor='#00000061'
+                                    underlineColorAndroid='transparent'
+                                />
+                            </View>
                         </View>
-                        <View style={styles.imputContainer} >
-                            <MaterialCommunityIcons name="city-variant-outline" size={22} color="#A8A1A1" style={styles.imputIcon} />
-                            <TextInput style={styles.textinput}
-                                value='Nam Định'
-                                placeholder='Tỉnh/Thành phố'
-                                placeholderTextColor='#00000061'
-                                underlineColorAndroid='transparent'
-                            />
-                        </View>
-                        <View style={styles.imputContainer}>
-                            <MaterialCommunityIcons name="home-outline" size={22} color="#A8A1A1" style={styles.imputIcon} />
-                            <TextInput style={styles.textinput}
-                                value='Giao Thủy'
-                                placeholder='Quận/Huyện'
-                                placeholderTextColor='#00000061'
-                                underlineColorAndroid='transparent'
-                            />
-                        </View>
-                        <View style={styles.imputContainer}>
-                            <Octicons name="location" size={22} color="#A8A1A1" style={styles.imputIcon} />
-                            <TextInput style={styles.textinput}
-                                value='Giao Thiện'
-                                placeholder='Địa chỉ'
-                                placeholderTextColor='#00000061'
-                                underlineColorAndroid='transparent'
-                            />
-                        </View>
-                    </View>
 
-                    <TouchableOpacity
-                        style={styles.btnDN}
-                        onPress={() => this.props.navigation.navigate('DangNhap')}
-                    >
-                        <LinearGradient
-                            colors={['#0a64a7', '#258dcf', '#3db1f3']}
-                            start={[0, 0]}
-                            end={[1, 1]}
-                            location={[0.5, 0.15, 1]}
-                            style={styles.buttonDN}
+                        <TouchableOpacity
+                            style={styles.btnDN}
+                            onPress={() => this.props.navigation.navigate('DangNhap')}
                         >
-                            <Text style={styles.text}>CẬP NHẬT</Text>
-                        </LinearGradient>
-                    </TouchableOpacity>
-                </View>
-            </ScrollView>
+                            <LinearGradient
+                                colors={['#0a64a7', '#258dcf', '#3db1f3']}
+                                start={[0, 0]}
+                                end={[1, 1]}
+                                location={[0.5, 0.15, 1]}
+                                style={styles.buttonDN}
+                            >
+                                <Text style={styles.text}>CẬP NHẬT</Text>
+                            </LinearGradient>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
+            // </Modal>
         );
     }
 }

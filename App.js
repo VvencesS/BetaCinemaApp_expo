@@ -25,6 +25,21 @@ import ItemPhimDangChieuComponent from './components/lichchieutheophim/itemphim/
 import DangChieuComponent from './components/lichchieutheophim/PhimDangChieuComponent';
 
 const Stack = createStackNavigator();
+const phimStack = createStackNavigator();
+
+// class PhimStackScreen extends Component {
+//   render() {
+//     return (
+//       <phimStack.Navigator
+
+//       >
+//         <phimStack.Screen name="LichChieuTheoPhim" component={LichChieuTheoPhimComponent} options={{ headerShown: false }} />
+//         <phimStack.Screen name="DangChieu" component={DangChieuComponent} options={{ headerShown: false }} />
+//         <phimStack.Screen name="ChiTietPhim" component={ChiTietPhimComponent} options={{ title: 'Chi tiết phim' }} />
+//       </phimStack.Navigator>
+//     )
+//   }
+// }
 
 export default function App({ navigation, route }) {
   return (
@@ -38,14 +53,15 @@ export default function App({ navigation, route }) {
         <Stack.Screen name="ThongTinTaiKhoan" component={ThongTinTaiKhoanComponent} options={{ title: 'Thông tin tài khoản' }} />
         <Stack.Screen name="ThayDoiMatKhau" component={ThayDoiMatKhauComponent} options={{ title: 'Thay đổi mật khẩu' }} />
         <Stack.Screen name="DatVeTheoPhim" component={DatVeTheoPhimComponent} options={{ title: 'Đặt vé theo phim' }} />
-        <Stack.Screen name="ChiTietPhim" component={ChiTietPhimComponent} options={{ title: 'Chi tiết phim' }} />
         <Stack.Screen name="Trailer" component={TrailerComponent} options={{ title: 'Trailer phim' }} />
         <Stack.Screen name="DatVeTheoRap" component={DatVeTheoRapComponent} options={{ title: 'Đặt vé theo rạp' }} />
         <Stack.Screen name="ChiTietKhuyenMai" component={ChiTietKhuyenMaiComponent} options={{ title: 'Tin mới và ưu đãi' }} />
         <Stack.Screen name="ChiTietTinBenLe" component={ChiTietTinBenLeComponent} options={{ title: 'Tin mới và ưu đãi' }} />
-        {/* <Stack.Screen name="LichChieuTheoPhim" component={LichChieuTheoPhimComponent} options={{ headerShown: false }} />
-        <Stack.Screen name="ItemPhimDangChieu" component={ItemPhimDangChieuComponent} options={{ headerShown: false }} />
-        <Stack.Screen name="DangChieu" component={DangChieuComponent} options={{ headerShown: false }} /> */}
+        {/* <Stack.Screen name="LichChieuTheoPhim" component={LichChieuTheoPhimComponent} options={{ headerShown: false }} /> */}
+        {/* <Stack.Screen name="ItemPhimDangChieu" component={ItemPhimDangChieuComponent} options={{ headerShown: false }} /> */}
+        {/* <Stack.Screen name="DangChieu" component={DangChieuComponent} options={{ headerShown: false }} /> */}
+        <Stack.Screen name="ChiTietPhim" component={ChiTietPhimComponent} options={{ title: 'Chi tiết phim' }} />
+        {/* <Stack.Screen name="PhimStackScreen" component={PhimStackScreen} options={{ headerShown: false }} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

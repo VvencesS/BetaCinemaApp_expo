@@ -1,1 +1,9 @@
-module.exports.signin = 'http://192.168.0.108:3000/signin';
+module.exports.urlLocalhost = 'http://192.168.1.7:3000/';
+module.exports.urlSignin = 'signin';
+module.exports.urlSignup = 'signup';
+module.exports.urlSlide = 'api/slide';
+module.exports.urlNowShowing = 'api/phim/nowshowing';
+module.exports.urlComingSoon = 'api/phim/comingsoon';
+module.exports.urlSneakShow = 'api/phim/sneakshow';
+module.exports.urlNews = 'api/tintucvauudai/news';
+module.exports.urlOffers = 'api/tintucvauudai/offers';

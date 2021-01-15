@@ -13,10 +13,27 @@ import {
 
 import { MaterialIcons } from '@expo/vector-icons';
 
+import ThongTinTaiKhoanComponent from '../taikhoan/ThongTinTaiKhoanComponent';
+
 const avatar = { uri: "https://avatars2.githubusercontent.com/u/54681614?s=460&u=665b6bfff00f4ae8524deda9a68fb526090815a9&v=4" };
 const code = { uri: "https://raw.githubusercontent.com/VvencesS/BetaCinemaApp_expo/anhs/images/code.jpg" };
 
+import { urlLocalhost } from '../../APILinks';
+
 export default class TaiKhoanComponent extends Component {
+    constructor(props) {
+        super(props);
+        console.log('TaiKhoanComponent ', props);
+        this.setState = {
+            taiKhoan: this.props.taiKhoan
+        }
+    }
+
+    _onPressThongTinTK = () => {
+        // alert('You add item');
+        this.refs.thongTinTKModal.showThongTinTKModal();
+    }
+
     render() {
         return (
             <ScrollView>
@@ -24,7 +41,7 @@ export default class TaiKhoanComponent extends Component {
                     <View style={styles.title}>
                         <ImageBackground
                             style={styles.background}
-                            source={avatar}
+                            source={{ uri: urlLocalhost + this.props.taiKhoan.anhdaidien }}
                         ></ImageBackground>
                     </View>
                     <View style={styles.content}>
@@ -32,15 +49,15 @@ export default class TaiKhoanComponent extends Component {
                             <View>
                                 <Image
                                     style={styles.avatar}
-                                    source={avatar}
+                                    source={{ uri: urlLocalhost + this.props.taiKhoan.anhdaidien }}
                                 ></Image>
                             </View>
                             <View>
-                                <Text style={styles.name}>Khổng Ngọc Ánh</Text>
+                                <Text style={styles.name}>{this.props.taiKhoan.hoten}</Text>
                             </View>
                             <View style={styles.card}>
                                 <Text style={styles.card_text}>Thẻ thành viên</Text>
-                                <Text style={styles.card_number}>9002000001061499</Text>
+                                <Text style={styles.card_number}>{this.props.taiKhoan.sothethanhvien}</Text>
                             </View>
                             <View>
                                 <Image
@@ -50,7 +67,7 @@ export default class TaiKhoanComponent extends Component {
                             </View>
                         </View>
                         <View style={styles.touch}>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate('ThongTinTaiKhoan')}>
+                            <TouchableOpacity onPress={this._onPressThongTinTK}>
                                 <View style={styles.touch_text} >
                                     <Text style={styles.text} >Thông tin tài khoản</Text>
                                     <View style={styles.backgroundIcon} >
@@ -76,6 +93,9 @@ export default class TaiKhoanComponent extends Component {
                     </View>
 
                 </View>
+                {/* <ThongTinTaiKhoanComponent ref={"thongTinTKModal"} parentFlatList={this} >
+
+                </ThongTinTaiKhoanComponent> */}
             </ScrollView>
         );
     }

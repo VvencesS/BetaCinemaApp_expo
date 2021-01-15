@@ -6,7 +6,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { LinearGradient } from "expo-linear-gradient";
 
-import { signin } from '../APILinks';
+import { urlSignin, urlLocalhost } from '../APILinks';
 
 const { width: WIDTH } = Dimensions.get('window')
 
@@ -14,15 +14,16 @@ export default class DangNhapComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      matKhau: "",
-      checkLogin: 0
+      email: '',
+      matKhau: '',
+      checkLogin: 0,
+      token: '',
     }
   }
 
   _onLoginSubmit = () => {
-    console.log(signin)
-    return fetch(signin, { //Promise
+    console.log(urlLocalhost + urlSignin)
+    return fetch(urlLocalhost + urlSignin, { //Promise
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -39,8 +40,11 @@ export default class DangNhapComponent extends Component {
         if (this.state.checkLogin == 1) {
           console.warn('responseJson ', responseJson);
 
-          Alert.alert("Thông báo!", "Bạn đã đăng nhập thành công!");
-          this.props.navigation.navigate('Home');
+          this.setState({ token: responseJson.token });
+          this.props.navigation.navigate('Home', {
+            token: this.state.token,
+            taiKhoan: responseJson.taiKhoan,
+          });
         }
         else {
           console.warn('responseJson', responseJson);

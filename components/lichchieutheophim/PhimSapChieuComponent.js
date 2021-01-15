@@ -6,6 +6,8 @@ import {
 import SlideImageComponent from '../slideimage/SlideImageComponent';
 import ItemPhimDangChieuComponent from './itemphim/ItemPhimDangChieuComponent';
 
+import { urlLocalhost } from '../../APILinks';
+
 var screen = Dimensions.get('window');
 const listPhim = [
     {
@@ -51,6 +53,11 @@ const listPhim = [
 ]
 
 export default class SapChieuComponent extends Component {
+    constructor(props) {
+        super(props);
+        console.log('SapChieuComponent ', props);
+    }
+
     render() {
         return (
             <ScrollView>
@@ -59,12 +66,29 @@ export default class SapChieuComponent extends Component {
                         <SlideImageComponent />
                     </View>
                     <FlatList
-                        data={listPhim}
+                        data={
+                            this.props.allComingSoonMovie.map(item => {
+                                return {
+                                    _id: item._id,
+                                    tenphim: item.tenphim,
+                                    gioihantuoi: item.gioihantuoi,
+                                    daodien: item.daodien,
+                                    dienvien: item.dienvien,
+                                    theloai: item.theloai,
+                                    thoiluong: item.thoiluong,
+                                    ngonngu: item.ngonngu,
+                                    ngaykhoichieu: item.ngaykhoichieu,
+                                    mota: item.mota,
+                                    linltrailer: item.linltrailer,
+                                    anhphim: urlLocalhost + item.anhPhim,
+                                }
+                            })
+                        }
                         numColumns={3}
                         horizontal={false}
                         renderItem={({ item, index }) => {
                             return (
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ChiTietPhim', listPhim)}>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('ChiTietPhim', item)}>
                                     <ItemPhimDangChieuComponent item={item} index={index} parentFlatList={this} />
                                 </TouchableOpacity>
                             );
